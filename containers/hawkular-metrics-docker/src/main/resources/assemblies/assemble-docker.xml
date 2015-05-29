@@ -30,6 +30,9 @@
     <fileSet>
       <directory>./src/main/docker</directory>
       <outputDirectory></outputDirectory>
+      <excludes>
+        <exclude>welcome-content/index.html</exclude>
+      </excludes>
       <filtered>false</filtered>
     </fileSet>
   </fileSets>
@@ -37,6 +40,11 @@
     <file>
       <source>./src/main/docker/Dockerfile</source>
       <outputDirectory></outputDirectory>
+      <filtered>true</filtered>
+    </file>
+    <file>
+      <source>./src/main/docker/welcome-content/index.html</source>
+      <outputDirectory>welcome-content</outputDirectory>
       <filtered>true</filtered>
     </file>
   </files>
