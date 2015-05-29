@@ -149,6 +149,7 @@
               <directory>${basedir}/src/main/webapp</directory>
               <excludes>
                 <exclude>WEB-INF/web.xml</exclude>
+                <exclude>static/index.html</exclude>
               </excludes>
             </resource>
             <resource>
@@ -156,6 +157,7 @@
               <directory>${basedir}/src/main/webapp</directory>
               <includes>
                 <include>WEB-INF/web.xml</include>
+                <include>static/index.html</include>
               </includes>
             </resource>
           </webResources>
