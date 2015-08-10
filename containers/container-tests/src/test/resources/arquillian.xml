@@ -23,5 +23,6 @@
             http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
   <extension qualifier="kubernetes">
     <property name="dependencies">target/test-classes/kubernetes-dependencies</property>
+    <property name="timeout">${arquillian.kubernetes.timeout:300000}</property>
   </extension>
 </arquillian>
