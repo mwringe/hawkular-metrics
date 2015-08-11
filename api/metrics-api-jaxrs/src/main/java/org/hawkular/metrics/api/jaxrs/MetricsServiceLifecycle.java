@@ -182,7 +182,7 @@ public class MetricsServiceLifecycle {
         } catch (Exception t) {
             Throwable rootCause = Throwables.getRootCause(t);
             LOG.error("Could not connect to Cassandra cluster - assuming its not up yet: ",
-                    rootCause.getLocalizedMessage());
+                    t);
             // cycle between original and more wait time - avoid waiting huge amounts of time
             long delay = 1L + ((connectionAttempts - 1L) % 4L);
             LOG.warn("[{}] Retrying connecting to Cassandra cluster in [{}]s...", connectionAttempts, delay);
