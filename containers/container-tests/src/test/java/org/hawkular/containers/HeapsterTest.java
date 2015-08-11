@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.fabric8.kubernetes.api.model.Pod;
@@ -86,7 +87,7 @@ public class HeapsterTest extends BaseContainerTests {
         // check that the result returned by heapster includes some metrics:
         String metrics_phrase = "Known metrics: ";
         int subInt = responseString.lastIndexOf(metrics_phrase) + metrics_phrase.length();
-        String metrics = responseString.substring(subInt);
+        String metrics = responseString.substring(subInt).trim();
 
         assertTrue(Integer.parseInt(metrics) > 0);
     }
@@ -153,6 +154,11 @@ public class HeapsterTest extends BaseContainerTests {
                 .put(policy);
 
         assertEquals(200, putResponse.getStatus());
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode = mapper.readTree(putResponse.readEntity(String.class));
+
+        System.err.println("JSONNODE RESPONSE : " + jsonNode);
 
     }
 }
