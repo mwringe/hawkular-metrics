@@ -67,7 +67,7 @@ public class HeapsterTest extends BaseContainerTests {
         addClusterPolicy(HEAPSTER_SERVICE_ACCOUNT_NAME, "cluster-readers");
 
         // we need to sleep for a bit for heapster to gather some metrics
-        Thread.sleep(10000);
+        Thread.sleep(30000);
 
         Service service = client.getService(HEAPSTER_SERVICE_NAME);
         String heapsterAddress = service.getSpec().getClusterIP();
@@ -95,7 +95,7 @@ public class HeapsterTest extends BaseContainerTests {
     public void testGetMetrics() throws Exception {
         String metricId = URLEncoder.encode("///cpu/usage", "UTF-8");
 
-        Thread.sleep(10000);
+        Thread.sleep(30000);
 
         JsonNode json = getJSON("/hawkular/metrics/gauges/" + metricId + "/data", "heapster");
 
