@@ -45,6 +45,7 @@ import org.hawkular.metrics.api.jaxrs.config.Configurable;
 import org.hawkular.metrics.api.jaxrs.config.ConfigurationProperty;
 import org.hawkular.metrics.api.jaxrs.util.Eager;
 import org.hawkular.metrics.api.jaxrs.util.VirtualClock;
+import org.hawkular.metrics.api.jaxrs.util.impl.VirtualClockImpl;
 import org.hawkular.metrics.core.api.MetricsService;
 import org.hawkular.metrics.core.impl.MetricsServiceImpl;
 import org.hawkular.metrics.schema.SchemaManager;
@@ -271,7 +272,7 @@ public class MetricsServiceLifecycle {
             // clock. Instead we want to wait to start it until a client sets the virtual
             // clock; otherwise, we will get a MissingBackpressureException.
             TestScheduler scheduler = Schedulers.test();
-            virtualClock = new VirtualClock(scheduler);
+            virtualClock = new VirtualClockImpl(scheduler);
             RepeatingTrigger.now = scheduler::now;
             ((TaskSchedulerImpl) taskScheduler).setTickScheduler(scheduler);
         } else {

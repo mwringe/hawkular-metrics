@@ -14,8 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hawkular.metrics.api.jaxrs.util;
+package org.hawkular.metrics.api.jaxrs.util.impl;
 
+import org.hawkular.metrics.api.jaxrs.util.VirtualClock;
 import rx.schedulers.TestScheduler;
 
 import java.util.concurrent.TimeUnit;
@@ -23,11 +24,24 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author jsanda
  */
-public interface VirtualClock {
+public class VirtualClockImpl implements VirtualClock {
 
-    public long now();
+    private TestScheduler scheduler;
 
-    public void advanceTimeTo(long time);
+    public VirtualClockImpl(TestScheduler scheduler) {
+        this.scheduler = scheduler;
+    }
 
-    public void advanceTimeBy(long duration, TimeUnit timeUnit);
+    public long now() {
+        return scheduler.now();
+    }
+
+    public void advanceTimeTo(long time) {
+        scheduler.advanceTimeTo(time, TimeUnit.MILLISECONDS);
+    }
+
+    public void advanceTimeBy(long duration, TimeUnit timeUnit) {
+        scheduler.advanceTimeBy(duration, timeUnit);
+    }
+
 }

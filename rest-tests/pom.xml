@@ -182,7 +182,7 @@
                     <javaOpt>-Dsun.rmi.dgc.client.gcInterval=3600000</javaOpt>
                     <javaOpt>-Dsun.rmi.dgc.server.gcInterval=3600000</javaOpt>
                     <javaOpt>-Djboss.socket.binding.port-offset=${wildfly.port.offset}</javaOpt>
-                    <javaOpt>-Djboss.server.config.dir=${project.build.directory}/wildfly-configuration</javaOpt>
+                    <javaOpt>-Djboss.server.config.dir=${project.build.directory}/eap-configuration</javaOpt>
                     <javaOpt>-Dcassandra.keyspace=${cassandra.keyspace}</javaOpt>
                     <javaOpt>-Dcassandra.resetdb</javaOpt>
                     <javaOpt>-Dhawkular.metrics.waitForService</javaOpt>
@@ -253,7 +253,7 @@
                     configuration files and override the default configuration directory. See
                     https://issues.jboss.org/browse/JBASMP-75 for details.
                   -->
-                  <outputDirectory>${project.build.directory}/wildfly-configuration</outputDirectory>
+                  <outputDirectory>${project.build.directory}/eap-configuration</outputDirectory>
                   <overwrite>true</overwrite>
                   <useDefaultDelimiters>false</useDefaultDelimiters>
                   <delimiters>
@@ -261,7 +261,7 @@
                   </delimiters>
                   <resources>
                     <resource>
-                      <directory>${project.basedir}/src/test/wildfly-configuration</directory>
+                      <directory>${project.basedir}/src/test/eap-configuration</directory>
                       <includes>
                         <include>*</include>
                       </includes>
