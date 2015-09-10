@@ -263,6 +263,9 @@
             <exclude>api/diff.txt</exclude>
             <!-- Exclude sample page dependencies -->
             <exclude>samples/rhmap/web/libs/**</exclude>
+            <!-- Exclude the standalone.xml file since it comes from upstream EAP -->
+            <exclude>src/main/docker/standalone.xml</exclude>
+
           </excludes>
         </configuration>
       </plugin>

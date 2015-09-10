@@ -36,6 +36,9 @@
     <module>cassandra-seed-provider</module>
     <module>cassandra-docker</module>
     <module>container-tests</module>
+    <module>hawkular-metrics-openshift-integration</module>
+    <module>metrics-api-jaxrs-1.1-openshift</module>
+    <module>hawkular-metrics-setup-docker</module>
   </modules>
 
   <properties>
@@ -47,7 +50,9 @@
     <hawkular-metrics.image>${docker.user}/hawkular-metrics:${project.version}</hawkular-metrics.image>
     <cassandra.build>devel</cassandra.build>
     <cassandra.image>${docker.user}/hawkular-cassandra:${version.org.apache.cassandra}-${cassandra.build}</cassandra.image>
-    <heapster.image>kubernetes/heapster:v0.17.0</heapster.image>
+    <hawkular-metrics-setup.image>${docker.user}/hawkular-metrics-setup:${project.version}</hawkular-metrics-setup.image>
+<!--    <heapster.image>kubernetes/heapster:v0.17.0</heapster.image> -->
+    <heapster.image>gcr.io/google_containers/heapster:v0.17.0</heapster.image>
   </properties>
 
   <dependencyManagement>

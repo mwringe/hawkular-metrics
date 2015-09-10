@@ -28,24 +28,14 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>hawkular-metrics-docker-eap</artifactId>
+  <artifactId>hawkular-metrics-setup-docker</artifactId>
   <packaging>pom</packaging>
 
-  <name>Hawkular Metrics Docker Image - EAP</name>
+  <name>Hawkular Metrics Setup Docker Image</name>
 
   <properties>
-    <docker.baseimage>registry.access.redhat.com/jboss-eap-6/eap-openshift</docker.baseimage>
+    <docker.baseimage>jboss/base-jdk:8</docker.baseimage>
   </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.hawkular.metrics</groupId>
-      <artifactId>hawkular-metrics-api-jaxrs-1.1-openshift</artifactId>
-      <version>${project.version}</version>
-      <type>war</type>
-    </dependency>
-
-  </dependencies>
 
   <build>
     <plugins>
@@ -55,22 +45,15 @@
         <configuration>
           <images>
             <image>
-              <name>${hawkular-metrics.image}</name>
+              <name>${hawkular-metrics-setup.image}</name>
               <build>
                 <assembly>
-                  <dockerFileDir>${project.basedir}/target/docker/${docker.user}/hawkular-metrics/${project.version}/build/maven</dockerFileDir>
+                  <dockerFileDir>${project.basedir}/target/docker/${docker.user}/hawkular-metrics-setup/${project.version}/build/maven</dockerFileDir>
                   <descriptor>../resources/assemblies/assemble-docker.xml</descriptor>
                 </assembly>
               </build>
             </image>
           </images>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <excludes>src/main/docker/standalone.xml</excludes>
         </configuration>
       </plugin>
     </plugins>

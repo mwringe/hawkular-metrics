@@ -30,33 +30,8 @@
     <fileSet>
       <directory>./src/main/docker</directory>
       <outputDirectory></outputDirectory>
-      <filtered>false</filtered>
-      <excludes>
-        <exclude>Dockerfile</exclude>
-        <exclude>welcome-content/index.html</exclude>
-      </excludes>
+      <filtered>true</filtered>
     </fileSet>
   </fileSets>
-  <files>
-    <file>
-      <source>./src/main/docker/Dockerfile</source>
-      <outputDirectory></outputDirectory>
-      <filtered>true</filtered>
-    </file>
-    <file>
-      <source>./src/main/docker/welcome-content/index.html</source>
-      <outputDirectory>welcome-content</outputDirectory>
-      <filtered>true</filtered>
-    </file>
-  </files>
-  <dependencySets>
-    <dependencySet>
-      <includes>
-        <include>org.hawkular.metrics:hawkular-metrics-api-jaxrs-1.1-openshift:war:${project.version}</include>
-      </includes>
-      <outputDirectory></outputDirectory>
-      <outputFileNameMapping>hawkular-metrics-api-jaxrs.war</outputFileNameMapping>
-    </dependencySet>
-  </dependencySets>
 </assembly>
 
