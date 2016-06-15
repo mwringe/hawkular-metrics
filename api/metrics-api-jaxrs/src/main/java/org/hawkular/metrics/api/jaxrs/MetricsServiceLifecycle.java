@@ -210,7 +210,13 @@ public class MetricsServiceLifecycle {
             session = createSession();
         } catch (Exception t) {
             Throwable rootCause = Throwables.getRootCause(t);
-            log.warnCouldNotConnectToCassandra(rootCause.getLocalizedMessage());
+
+            if (rootCause.getLocalizedMessage().equals(this.nodes + ": unknown error")) {
+                log.warnCouldNotConnectToCassandra("Could not resolve hostname: " + rootCause.getLocalizedMessage());
+            } else {
+                log.warnCouldNotConnectToCassandra(rootCause.getLocalizedMessage());
+            }
+
             // cycle between original and more wait time - avoid waiting huge amounts of time
             long delay = 1L + ((connectionAttempts - 1L) % 4L);
             log.warnRetryingConnectingToCassandra(connectionAttempts, delay);
